@@ -23,6 +23,10 @@ Use a **USB 2.0** port, not USB 3.0. Some boards fail or behave oddly on USB 3.x
 
 Put the **Ulanzi TC001** (AWTRIX 3) on the **same network** as the computer running this script (for example both on `192.168.68.x` when your LAN uses that range). If they are on different subnets or VLANs, MQTT from your PC may not reach the clock. A **yellow pixel** in the **bottom-left** corner of the display often means a connectivity problem—double-check Wi‑Fi and that the clock is on the same LAN as your broker/PC.
 
+### Reserve your PC’s IP on the router
+
+Your PC’s LAN address can change when the DHCP lease renews or after a reboot. Because `MQTT_URL` and the AWTRIX MQTT broker setting use that IP, a new address silently breaks MQTT. Open your router’s admin page and create a **DHCP reservation**
+
 ### AWTRIX 3 dashboard
 
 In the TC001’s AWTRIX 3 web UI, set the MQTT broker hostname/IP to your **computer’s LAN IP** (the machine where the MQTT broker runs). Match that in `.env` with `MQTT_URL`.
