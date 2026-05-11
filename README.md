@@ -1,6 +1,6 @@
-# Follower count → Awtrix
+# Instagram follower count on AWTRIX 3 (Ulanzi TC001)
 
-Small Node script that fetches an Instagram follower count via RapidAPI and publishes it to MQTT for an AWTRIX-compatible clock (for example Ulanzi TC001).
+Node script that reads an Instagram follower count through RapidAPI and sends it over MQTT to AWTRIX 3 on a Ulanzi TC001 pixel clock.
 
 ## Setup
 
@@ -21,11 +21,11 @@ Use a **USB 2.0** port, not USB 3.0. Some boards fail or behave oddly on USB 3.x
 
 ### Network
 
-Put the Ulanzi / AWTRIX device on the **same network** as the computer running this script (for example both on `192.168.68.x` when your LAN uses that range). If they are on different subnets or VLANs, MQTT from your PC may not reach the clock. A **yellow pixel** in the **bottom-left** corner of the display often means a connectivity problem—double-check Wi‑Fi and that the clock is on the same LAN as your broker/PC.
+Put the **Ulanzi TC001** (AWTRIX 3) on the **same network** as the computer running this script (for example both on `192.168.68.x` when your LAN uses that range). If they are on different subnets or VLANs, MQTT from your PC may not reach the clock. A **yellow pixel** in the **bottom-left** corner of the display often means a connectivity problem—double-check Wi‑Fi and that the clock is on the same LAN as your broker/PC.
 
-### AWTRIX dashboard
+### AWTRIX 3 dashboard
 
-Set the MQTT broker hostname/IP to your **computer’s LAN IP** (the machine where the MQTT broker runs). Match that in `.env` with `MQTT_URL`.
+In the TC001’s AWTRIX 3 web UI, set the MQTT broker hostname/IP to your **computer’s LAN IP** (the machine where the MQTT broker runs). Match that in `.env` with `MQTT_URL`.
 
 ### Windows Task Scheduler
 
