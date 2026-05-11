@@ -2,7 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const mqtt = require("mqtt");
 
-const client = mqtt.connect(process.env.MQTT_URL);
+const client = mqtt.connect(process.env.MQTT_URL, { reconnectPeriod: 0 });
 
 const username = "webbyvaris";
 
@@ -29,16 +29,22 @@ async function update() {
                 icon: "8649",
                 duration: 10
             }),
-            { retain: true }
+            { retain: true },
+            () => client.end()
         );
 
         console.log("Updated:", count);
     } catch (err) {
         console.log("Error:", err.message);
+        client.end();
     }
 }
 
+client.on("error", (err) => {
+    console.log("Error:", err.message);
+    client.end();
+});
+
 client.on("connect", () => {
     update();
-    setInterval(update, 2 * 60 * 60 * 1000);
 });
